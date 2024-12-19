@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f0f8ff;
+            color: #333;
+        }
+        #i {
+            width: 200px;
+            padding: 10px;
+            margin-right: 10px;
+            border: 2px solid #6c63ff;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            background-color: #6c63ff;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #4b47c2;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background-color: #e0e7ff;
+            margin: 5px 0;
+            padding: 10px;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        li:hover {
+            background-color: #d0d9ff;
+        }
+        .delete-btn {
+            background-color: #ff6b6b;
+        }
+        .delete-btn:hover {
+            background-color: #d9534f;
+        }
+    </style>
+</head>
+<body>
+    <input id="i" placeholder="Enter item">
+    <button onclick="additem()">ADD</button>
+    <ul id="b">
+        <li>
+            <input type="checkbox">
+            HELLO
+            <button class="delete-btn" onclick="deleteitem(this)">DELETE</button>
+        </li>
+    </ul>
+
+    <script>
+        function additem() {
+            var list = document.getElementById("b");
+            var input = document.getElementById("i");
+            if (input.value.trim() === "") {
+                alert("Please enter a valid item.");
+                return;
+            }
+            var li = document.createElement("li");
+            
+            var checkbox = document.createElement("input");
+            checkbox.type = "checkbox";
+            
+            var text = document.createTextNode(input.value);
+
+            var deleteBtn = document.createElement("button");
+            deleteBtn.textContent = "DELETE";
+            deleteBtn.className = "delete-btn";
+            deleteBtn.onclick = function () {
+                deleteitem(deleteBtn);
+            };
+
+            li.appendChild(checkbox);
+            li.appendChild(text);
+            li.appendChild(deleteBtn);
+            list.appendChild(li);
+
+            input.value = ""; // Clear the input field
+        }
+
+        function deleteitem(button) {
+            var li = button.parentElement;
+            li.remove();
+        }
+    </script>
+</body>
+</html>
